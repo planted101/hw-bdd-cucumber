@@ -25,6 +25,12 @@ Background: movies have been added to database
 Scenario: restrict to movies with "PG" or "R" ratings
   And I check the "PG" checkbox
   Then complete the rest of of this scenario
+  And I check the "R" checkbox
+  And I uncheck the following ratings: G, PG-13
+  And I submit the search form on the homepage
+  Then I should see the following movies: Aladdin, The Terminator, When Harry Met Sally, The Help, Chocolat, Amelie
+
+  And I should not see the following movies: 2001: A Space Odyssey, The Incredibles, Raiders of the Lost Ark, Chicken Run
   # enter step(s) to check the "PG" and "R" checkboxes
   # enter step(s) to uncheck all other checkboxes
   # enter step to "submit" the search form on the homepage
@@ -33,4 +39,6 @@ Scenario: restrict to movies with "PG" or "R" ratings
 
 Scenario: all ratings selected
   # your steps here
-  Then complete the rest of of this scenario
+  Given I check the following ratings: G, PG, PG-13, R
+  And I submit the search form on the homepage
+  Then  I should see all the movies in movie_steps.rb

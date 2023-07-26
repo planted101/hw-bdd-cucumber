@@ -4,8 +4,12 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
+Movie.create!(
+      title: movie['title'],
+      release_year: movie['release_year'],
+      genre: movie['genre']
+    )
   end
-  pending "Fill in this step in movie_steps.rb"
 end
 
 Then /(.*) seed movies should exist/ do | n_seeds |
@@ -18,7 +22,8 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  pending "Fill in this step in movie_steps.rb"
+  page_content = page.body
+  expect(page_content.index(e1)).to be < page_content.index(e2)
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -29,18 +34,31 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  pending "Fill in this step in movie_steps.rb"
+ratings = rating_list.split(', ')
+  ratings.each do |rating|
+    step %{I #{uncheck}check "ratings_#{rating}"}
+  end
 end
 
 # Part 2, Step 3
 Then /^I should (not )?see the following movies: (.*)$/ do |no, movie_list|
   # Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
-  pending "Fill in this step in movie_steps.rb"
+ movies = movie_list.split(', ')
+  movies.each do |movie|
+    if not_see
+      expect(page).not_to have_content(movie)
+    else
+      expect(page).to have_content(movie)
+    end
+  end
 end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  pending "Fill in this step in movie_steps.rb"
+all_movie_titles = Movie.pluck(:title)
+all_movie_titles.each do |title|
+    expect(page).to have_content(title)
+  end
 end
 
 ### Utility Steps Just for this assignment.
