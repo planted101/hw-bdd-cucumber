@@ -27,7 +27,7 @@ Scenario: restrict to movies with "PG" or "R" ratings
   Then complete the rest of of this scenario
   And I check the "R" checkbox
   And I uncheck the following ratings: G, PG-13
-  And I submit the search form on the homepage
+  And I press submit on the homepage
   Then I should see the following movies: Aladdin, The Terminator, When Harry Met Sally, The Help, Chocolat, Amelie
 
   And I should not see the following movies: 2001: A Space Odyssey, The Incredibles, Raiders of the Lost Ark, Chicken Run
