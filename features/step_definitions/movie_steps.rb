@@ -43,7 +43,7 @@ end
 # Part 2, Step 3
 Then /^I should (not )?see the following movies: (.*)$/ do |no, movie_list|
   # Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
- movies = movie_list.split(', ')
+  movies = movie_list.split(', ').map { |m| m.gsub('"', '') }
   movies.each do |movie|
     if not_see
       expect(page).not_to have_content(movie)
