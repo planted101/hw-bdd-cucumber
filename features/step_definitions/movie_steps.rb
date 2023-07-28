@@ -45,14 +45,15 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
 end
 
 # Part 2, Step 3
+
+# Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
 Then /^I should (not )?see the following movies: (.*)$/ do |not_see, movie_list|
-  # Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
-  movies = movies_list.split(', ')
+  movies = movie_list.split(', ')
   movies.each do |movie|
     if not_see
-      expect(page).not_to have_content(movie)
+      step "I should not see \"#{movie}\""
     else
-      expect(page).to have_content(movie)
+      step "I should see \"#{movie}\""
     end
   end
 end
