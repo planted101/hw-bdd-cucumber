@@ -31,11 +31,7 @@ Scenario: restrict to movies with "PG" or "R" ratings
   And I should see "When Harry Met Sally"
   And I should see "Amelie"
   And I should see "The Incredibles"
-  And I should not see "2001: A Space Odyssey"
-  And I should not see "Aladdin"
-  And I should not see "Chicken Run"
-  And I should not see "Chocolat"
-  And I should not see "The Help"
+  And I should not see the following movies: "2001: A Space Odyssey", "Aladdin", "Chicken Run", "Chocolat", "The Help"
 
   # enter step(s) to check the "PG" and "R" checkboxes
   # enter step(s) to uncheck all other checkboxes
