@@ -23,8 +23,7 @@ Background: movies have been added to database
   Then 10 seed movies should exist
 
 Scenario: restrict to movies with "PG" or "R" ratings
-  And I check the "PG" checkbox
-  And I check the "R" checkbox
+  And I check And I check the following ratings: PG, R
   And I uncheck the following ratings: G, PG-13
   And I should see "Raiders of the Lost Ark"
   And I should see "The Terminator"
