@@ -6,8 +6,8 @@ Given /the following movies exist/ do |movies_table|
     # you should arrange to add that movie to the database here.
 Movie.create!(
       title: movie['title'],
-      release_year: movie['release_year'],
-      genre: movie['genre']
+      release_date: movie['release_date'],
+      rating: movie['rating']
     )
   end
 end
