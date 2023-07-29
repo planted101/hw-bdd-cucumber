@@ -37,11 +37,11 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   ratings = rating_list.split(', ')
   ratings.each do |rating|
     if uncheck
-	uncheck("ratings[#{rating}]")
+	uncheck("ratings_#{rating}")
 	puts rating
 	puts ("is unchecked.")
     else
-	check("ratings[#{rating}]")
+	check("ratings_#{rating}")
    	puts rating
 	puts ("is checked.")
 	 end
